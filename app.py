@@ -6,15 +6,15 @@ import io
 import torch.nn as nn
 
 # Initialize app
-app = Flask(_name_)
+app = Flask(__name__)
 
 # Define label names
 labels = {0: "Arborio", 1: "Basmati", 2: "Ipsala", 3: "Jasmine", 4: "Karacadag"}
 
 # Define model class
 class CNN(nn.Module):
-    def _init_(self, unique_classes=5):
-        super(CNN, self)._init_()
+    def __init__(self, unique_classes=5):
+        super(CNN, self).__init__()
         self.conv_layers = nn.Sequential(
             nn.Conv2d(3, 32, 3), nn.ReLU(), nn.MaxPool2d(2), nn.BatchNorm2d(32),
             nn.Conv2d(32, 64, 3), nn.ReLU(), nn.MaxPool2d(2), nn.BatchNorm2d(64),
@@ -67,7 +67,7 @@ def predict():
     return jsonify({"prediction": label})
 
 # Run app
-if _name_ == "_main_":
+if __name__ == "__main__":
     app.run(debug=True)
 
 
