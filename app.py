@@ -10,6 +10,8 @@ labels = {0: "Arborio", 1: "Basmati", 2: "Ipsala", 3: "Jasmine", 4: "Karacadag"}
 
 # Load your model class (from your CNN definition in Colab)
 import torch.nn as nn
+app = Flask(__name__)
+
 
 class CNN(nn.Module):
     def __init__(self, unique_classes=5):
@@ -40,5 +42,7 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5,), (0.5,))
 ])
+if __name__ == "__main__":
+    app.run(debug=True)
 
-# Create Flask app
+
