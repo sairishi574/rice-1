@@ -48,10 +48,11 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    if 'image' not in request.files:
+    # Accept key 'file' instead of 'image'
+    if 'file' not in request.files:
         return jsonify({'error': 'No image provided'}), 400
 
-    file = request.files['image']
+    file = request.files['file']
     try:
         img = Image.open(file.stream).convert("RGB")
     except Exception as e:
@@ -67,4 +68,5 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
